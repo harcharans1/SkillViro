@@ -8,4 +8,5 @@ export interface Project {
   duration: string;
   requirements: string[];
   outcomes: string[];
+  tasks: string[];
 }

@@ -1,63 +1,41 @@
-# SkillViro
-<<<<<<< HEAD
+# SkillViro project fix
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.24.
+This patch fixes:
 
-## Development server
+- Featured `Start Project` navigation
+- Project Details `Start Project` navigation
+- Duplicate project data
+- Dynamic workspace project information
+- Dynamic workspace technologies
+- Project-specific workspace tasks
+- Project-specific progress
+- Missing `tasks` property in the Project model
+- TypeScript `rootDir` configuration warning
 
-To start a local development server, run:
+## Apply
 
-```bash
-ng serve
+1. Extract this ZIP.
+2. Open PowerShell in your local `B:\projects\SkillViro` repository.
+3. Run:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\apply-skillviro-fix.ps1
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4. Then run:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```powershell
+npm install
+npm run build
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Test
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-=======
-SkillViro — Learn Skills. Build Future.
->>>>>>> d4ed8c6054d9fc1e38968453a53c0868de537d77
+- `/projects`
+- `/projects/e-commerce-platform`
+- `/projects/e-commerce-platform/workspace`
+- `/projects/task-management-app/workspace`
+- `/projects/portfolio-website/workspace`
+- `/projects/skill-learning-platform/workspace`

@@ -1,5 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'app-project-workspace',
@@ -9,107 +10,46 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 })
 export class ProjectWorkspace {
 
-  private route = inject(ActivatedRoute);
-
-  /* ================================
-     PROJECT ID
-  ================================= */
+  private readonly route = inject(ActivatedRoute);
+  private readonly projectService = inject(ProjectService);
 
   projectId = computed(() =>
     this.route.snapshot.paramMap.get('id') ?? ''
   );
 
+  project = computed(() =>
+    this.projectService.getById(this.projectId())
+  );
 
-  /* ================================
-     PROJECT DATA
-  ================================= */
-
-  projectTitle = computed(() => {
-
-    const id = this.projectId();
-
-    const titles: Record<string, string> = {
-      'e-commerce-platform': 'E-Commerce Platform',
-      'task-management-app': 'Task Management App',
-      'portfolio-website': 'Portfolio Website',
-      'skill-learning-platform': 'Skill Learning Platform'
-    };
-
-    return titles[id] ?? 'Project Workspace';
-  });
-
-
-  /* ================================
-     TASKS
-  ================================= */
-
-  tasks = [
-    'Set up the project structure',
-    'Create the homepage',
-    'Build the product section',
-    'Add authentication',
-    'Create shopping cart',
-    'Build checkout page',
-    'Connect database',
-    'Test the complete application'
-  ];
-
-
-  /* ================================
-     COMPLETED TASKS
-  ================================= */
+  tasks = computed(() =>
+    this.project()?.tasks ?? []
+  );
 
   completedTasks = signal<number[]>([]);
 
-
-  /* ================================
-     TOGGLE TASK
-  ================================= */
-
   toggleTask(index: number): void {
-
     this.completedTasks.update(completed => {
-
       if (completed.includes(index)) {
-
-        return completed.filter(
-          taskIndex => taskIndex !== index
-        );
-
+        return completed.filter(taskIndex => taskIndex !== index);
       }
 
       return [...completed, index];
-
     });
-
   }
-
-
-  /* ================================
-     CHECK TASK
-  ================================= */
 
   isTaskCompleted(index: number): boolean {
-
     return this.completedTasks().includes(index);
-
   }
 
-
-  /* ================================
-     PROGRESS
-  ================================= */
-
   progress = computed(() => {
+    const totalTasks = this.tasks().length;
 
-    if (this.tasks.length === 0) {
+    if (totalTasks === 0) {
       return 0;
     }
 
     return Math.round(
-      (this.completedTasks().length / this.tasks.length) * 100
+      (this.completedTasks().length / totalTasks) * 100
     );
-
   });
-
 }
