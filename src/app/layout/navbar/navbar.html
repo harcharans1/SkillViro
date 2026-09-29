@@ -1,27 +1,23 @@
-<header class="navbar">
-  <a class="brand" routerLink="/">
-    <span class="brand-icon">S</span>
-    <span class="brand-name">Skill<span>Viro</span></span>
-  </a>
-
-  <nav class="nav-links">
-    <a routerLink="/" routerLinkActive="active"
-       [routerLinkActiveOptions]="{ exact: true }">
-      Home
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" routerLink="/" (click)="closeMenu()">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Viro</span></span>
     </a>
 
-    <a routerLink="/courses" routerLinkActive="active">Courses</a>
-    <a routerLink="/projects" routerLinkActive="active">Projects</a>
-    <a routerLink="/tools" routerLinkActive="active">Tools</a>
-    <a routerLink="/career" routerLinkActive="active">Career</a>
-  </nav>
+    <button class="menu-btn" type="button" aria-label="Toggle menu" (click)="toggleMenu()">☰</button>
 
-  <div class="nav-actions">
-    <a class="login" routerLink="/login">Login</a>
-    <a class="start-btn" routerLink="/courses">Get Started</a>
+    <nav [class.open]="menuOpen()">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">Home</a>
+      <a routerLink="/courses" routerLinkActive="active" (click)="closeMenu()">Courses</a>
+      <a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">Projects</a>
+      <a routerLink="/tools" routerLinkActive="active" (click)="closeMenu()">Tools</a>
+      <a routerLink="/career" routerLinkActive="active" (click)="closeMenu()">Career</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a routerLink="/login" class="login-link">Login</a>
+      <a routerLink="/register" class="btn btn-primary">Get Started</a>
+    </div>
   </div>
-
-  <button class="menu-btn" aria-label="Open menu">
-    ☰
-  </button>
 </header>

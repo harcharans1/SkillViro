@@ -1,17 +1,13 @@
-import { Component, input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Course } from '../../../models/course.model';
 
 @Component({
   selector: 'app-course-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './course-card.html',
   styleUrl: './course-card.css'
 })
 export class CourseCard {
-  title = input('Web Development');
-  description = input('Learn modern web development from fundamentals to real projects.');
-  category = input('Development');
-  level = input('Beginner');
-  lessons = input(24);
-  duration = input('8 Weeks');
-  price = input('Free');
+  @Input({ required: true }) course!: Course;
 }

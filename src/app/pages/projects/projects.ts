@@ -1,52 +1,28 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { ProjectCard } from '../../shared/cards/project-card/project-card';
 import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'app-projects',
-  imports: [ProjectCard, RouterLink],
+  imports: [ProjectCard],
   templateUrl: './projects.html',
   styleUrl: './projects.css'
 })
 export class Projects {
-
   private readonly projectService = inject(ProjectService);
-
-  searchQuery = signal('');
-  selectedFilter = signal('All Projects');
-
+  query = signal('');
+  selected = signal('All');
+  filters = ['All', 'Full Stack', 'Web App', 'Frontend', 'Beginner', 'Intermediate', 'Advanced'];
   projects = signal(this.projectService.getAll());
 
   filteredProjects = computed(() => {
-    const query = this.searchQuery().toLowerCase().trim();
-    const filter = this.selectedFilter();
-
+    const q = this.query().trim().toLowerCase();
+    const filter = this.selected();
     return this.projects().filter(project => {
-      const matchesSearch =
-        project.title.toLowerCase().includes(query) ||
-        project.description.toLowerCase().includes(query) ||
-        project.category.toLowerCase().includes(query) ||
-        project.difficulty.toLowerCase().includes(query) ||
-        project.technologies.some(tech =>
-          tech.toLowerCase().includes(query)
-        );
-
-      const matchesFilter =
-        filter === 'All Projects' ||
-        project.category === filter ||
-        project.difficulty === filter;
-
-      return matchesSearch && matchesFilter;
+      const text = `${project.title} ${project.description} ${project.category} ${project.difficulty} ${project.technologies.join(' ')}`.toLowerCase();
+      return (!q || text.includes(q)) && (filter === 'All' || project.category === filter || project.difficulty === filter);
     });
   });
 
-  updateSearch(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.searchQuery.set(input.value);
-  }
-
-  setFilter(filter: string): void {
-    this.selectedFilter.set(filter);
-  }
+  search(event: Event): void { this.query.set((event.target as HTMLInputElement).value); }
 }

@@ -3,7 +3,7 @@ export interface Project {
   title: string;
   description: string;
   category: string;
-  difficulty: string;
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
   technologies: string[];
   duration: string;
   requirements: string[];

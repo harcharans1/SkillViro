@@ -9,15 +9,8 @@ import { ProjectService } from '../../services/project.service';
   styleUrl: './project-details.css'
 })
 export class ProjectDetails {
-
   private readonly route = inject(ActivatedRoute);
-  private readonly projectService = inject(ProjectService);
-
-  projectId = computed(() =>
-    this.route.snapshot.paramMap.get('id') ?? ''
-  );
-
-  project = computed(() =>
-    this.projectService.getById(this.projectId())
-  );
+  private readonly service = inject(ProjectService);
+  projectId = computed(() => this.route.snapshot.paramMap.get('id') ?? '');
+  project = computed(() => this.service.getById(this.projectId()));
 }

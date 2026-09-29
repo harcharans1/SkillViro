@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Project } from '../../../models/project.model';
 
 @Component({
   selector: 'app-project-card',
@@ -8,24 +9,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './project-card.css'
 })
 export class ProjectCard {
-
-  id = input('');
-
-  title = input('E-Commerce Website');
-
-  description = input(
-    'Build a complete modern shopping website.'
-  );
-
-  category = input('Web Development');
-
-  difficulty = input('Intermediate');
-
-  technologies = input<string[]>([
-    'Angular',
-    'TypeScript',
-    'CSS'
-  ]);
-
-  duration = input('2 Weeks');
+  @Input({ required: true }) project!: Project;
 }

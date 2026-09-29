@@ -1,58 +1,12 @@
-<section class="courses-page">
-
-  <div class="page-heading">
-    <span>SKILLVIRO ACADEMY</span>
-
-    <h1>Learn skills that <strong>move you forward.</strong></h1>
-
-    <p>
-      Practical courses designed to help you learn,
-      practice and build real-world skills.
-    </p>
-  </div>
-
-  <div class="course-grid">
-
-    <app-course-card
-      title="Web Development"
-      description="Build modern websites with HTML, CSS, JavaScript and Angular."
-      category="Development"
-      level="Beginner"
-      [lessons]="32"
-      duration="10 Weeks"
-      price="Free"
-    />
-
-    <app-course-card
-      title="JavaScript Mastery"
-      description="Master JavaScript fundamentals, DOM, APIs and modern concepts."
-      category="Programming"
-      level="Intermediate"
-      [lessons]="40"
-      duration="12 Weeks"
-      price="₹999"
-    />
-
-    <app-course-card
-      title="Angular Development"
-      description="Build scalable modern web applications with Angular."
-      category="Frontend"
-      level="Intermediate"
-      [lessons]="36"
-      duration="10 Weeks"
-      price="₹1,499"
-    />
-
-    <app-course-card
-      title="Digital Marketing"
-      description="Learn SEO, social media, content marketing and analytics."
-      category="Marketing"
-      level="Beginner"
-      [lessons]="28"
-      duration="8 Weeks"
-      price="₹799"
-    />
-
-  </div>
-
-</section>
+<div class="page">
+  <section class="listing-hero"><div class="container"><span class="eyebrow">COURSES</span><h1>Learn skills that <span>move you forward.</span></h1><p>Structured, practical learning paths for web development, programming and modern application building.</p></div></section>
+  <section class="section"><div class="container">
+    <div class="filters">
+      <input type="search" placeholder="Search courses..." (input)="search($event)">
+      <div class="chips">@for (category of categories; track category) { <button [class.active]="selected() === category" (click)="selected.set(category)">{{ category }}</button> }</div>
+    </div>
+    <div class="course-grid">
+      @for (course of filtered(); track course.id) { <app-course-card [course]="course" /> } @empty { <div class="empty">No courses match your search.</div> }
+    </div>
+  </div></section>
+</div>

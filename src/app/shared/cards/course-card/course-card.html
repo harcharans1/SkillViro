@@ -1,23 +1,13 @@
 <article class="course-card">
-  <div class="course-image">
-    <span class="course-category">{{ category }}</span>
-    <span class="course-level">{{ level }}</span>
-  </div>
-
-  <div class="course-content">
-    <h3>{{ title }}</h3>
-
-    <p>{{ description }}</p>
-
-    <div class="course-meta">
-      <span>📚 {{ lessons }} Lessons</span>
-      <span>⏱ {{ duration }}</span>
-    </div>
-
+  <div class="course-art"><span>{{ course.accent }}</span></div>
+  <div class="course-body">
+    <div class="meta"><span>{{ course.category }}</span><span>{{ course.level }}</span></div>
+    <h3>{{ course.title }}</h3>
+    <p>{{ course.description }}</p>
+    <div class="course-info"><span>◷ {{ course.duration }}</span><span>▣ {{ course.lessons }} lessons</span></div>
     <div class="course-bottom">
-      <strong>{{ price }}</strong>
-
-      <a href="#">View Course →</a>
+      <strong>{{ course.price === 0 ? 'Free' : '₹' + course.price }}</strong>
+      <a [routerLink]="['/courses']" class="arrow-link">Explore →</a>
     </div>
   </div>
 </article>

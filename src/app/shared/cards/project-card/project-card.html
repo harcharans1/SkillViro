@@ -1,36 +1,16 @@
 <article class="project-card">
-
-  <div class="project-preview">
-    <span>{{ category() }}</span>
-    <strong>{{ difficulty() }}</strong>
+  <div class="project-top">
+    <span class="project-number">{{ project.id === 'e-commerce-platform' ? '01' : project.id === 'task-management-app' ? '02' : project.id === 'portfolio-website' ? '03' : '04' }}</span>
+    <span class="pill">{{ project.difficulty }}</span>
   </div>
-
-  <div class="project-content">
-
-    <h3>{{ title() }}</h3>
-
-    <p>
-      {{ description() }}
-    </p>
-
-    <div class="tech-stack">
-      @for (tech of technologies(); track tech) {
-        <span>{{ tech }}</span>
-      }
-    </div>
-
-    <div class="project-footer">
-
-      <span>
-        ⏱ {{ duration() }}
-      </span>
-
-      <a [routerLink]="['/projects', id()]">
-        View Project →
-      </a>
-
-    </div>
-
+  <span class="category">{{ project.category }}</span>
+  <h3>{{ project.title }}</h3>
+  <p>{{ project.description }}</p>
+  <div class="tech">
+    @for (tech of project.technologies; track tech) { <span>{{ tech }}</span> }
   </div>
-
+  <div class="card-footer">
+    <span>{{ project.duration }}</span>
+    <a class="arrow-link" [routerLink]="['/projects', project.id]">View project →</a>
+  </div>
 </article>
