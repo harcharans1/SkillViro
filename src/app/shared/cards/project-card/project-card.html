@@ -1,0 +1,36 @@
+<article class="project-card">
+
+  <div class="project-preview">
+    <span>{{ category() }}</span>
+    <strong>{{ difficulty() }}</strong>
+  </div>
+
+  <div class="project-content">
+
+    <h3>{{ title() }}</h3>
+
+    <p>
+      {{ description() }}
+    </p>
+
+    <div class="tech-stack">
+      @for (tech of technologies(); track tech) {
+        <span>{{ tech }}</span>
+      }
+    </div>
+
+    <div class="project-footer">
+
+      <span>
+        ⏱ {{ duration() }}
+      </span>
+
+      <a [routerLink]="['/projects', id()]">
+        View Project →
+      </a>
+
+    </div>
+
+  </div>
+
+</article>

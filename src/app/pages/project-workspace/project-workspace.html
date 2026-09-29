@@ -1,0 +1,323 @@
+<section class="workspace-page">
+
+    <!-- BACK -->
+
+    <a routerLink="/projects" class="back-link">
+
+
+        ← Back to Projects
+
+
+    </a>
+
+    <!-- HEADER -->
+
+    <header class="workspace-header">
+
+
+        <div class="workspace-title">
+
+            <span class="eyebrow">
+                PROJECT WORKSPACE
+            </span>
+
+            <h1>
+                {{ projectTitle() }}
+            </h1>
+
+            <p>
+                Build your project step by step and track your progress
+                as you complete each task.
+            </p>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+        <div class="progress-card">
+
+            <div class="progress-top">
+
+                <span>
+                    YOUR PROGRESS
+                </span>
+
+                <strong>
+                    {{ progress() }}%
+                </strong>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div class="progress-fill" [style.width.%]="progress()"></div>
+
+            </div>
+
+
+            <p>
+                {{ completedTasks().length }} of
+                {{ tasks.length }} tasks completed
+            </p>
+
+        </div>
+
+
+    </header>
+
+    <!-- MAIN GRID -->
+
+    <div class="workspace-grid">
+
+
+        <!-- =========================
+     MAIN CONTENT
+========================== -->
+
+        <main>
+
+
+            <!-- PROJECT BRIEF -->
+            <section class="workspace-card">
+
+                <span class="section-label">
+                    PROJECT BRIEF
+                </span>
+
+                <h2>
+                    Build a complete
+                    {{ projectTitle() }}
+                </h2>
+
+                <p>
+                    Your goal is to build a professional,
+                    portfolio-ready application by completing
+                    each task step by step.
+                </p>
+
+                <p>
+                    Follow the project requirements, complete
+                    each milestone and test your application
+                    before moving to the next stage.
+                </p>
+
+            </section>
+
+
+            <!-- TASKS -->
+            <section class="workspace-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            PROJECT TASKS
+                        </span>
+
+                        <h2>
+                            Build Step by Step
+                        </h2>
+
+                    </div>
+
+                    <span class="task-count">
+                        {{ completedTasks().length }}/{{ tasks.length }}
+                    </span>
+
+                </div>
+
+
+                <div class="task-list">
+
+                    @for (task of tasks; track task; let i = $index) {
+
+                    <button type="button" class="task" [class.completed]="isTaskCompleted(i)" (click)="toggleTask(i)">
+
+                        <span class="checkbox" [class.checked]="isTaskCompleted(i)">
+
+                            @if (isTaskCompleted(i)) {
+                            ✓
+                            }
+
+                        </span>
+
+
+                        <span class="task-text">
+                            {{ task }}
+                        </span>
+
+
+                        <span class="task-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                    }
+
+                </div>
+
+            </section>
+
+
+            <!-- COMPLETION MESSAGE -->
+            @if (progress() === 100) {
+
+            <section class="completion-card">
+
+                <div class="completion-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        PROJECT COMPLETED
+                    </span>
+
+                    <h2>
+                        Great work! 🎉
+                    </h2>
+
+                    <p>
+                        You have completed all project tasks.
+                        Your project is ready for the next step.
+                    </p>
+
+                </div>
+
+            </section>
+
+            }
+
+
+        </main>
+
+
+        <!-- =========================
+     SIDEBAR
+========================== -->
+
+        <aside>
+
+
+            <!-- PROJECT INFO -->
+            <section class="workspace-card">
+
+                <span class="section-label">
+                    PROJECT INFO
+                </span>
+
+
+                <div class="info-row">
+
+                    <span>
+                        Project
+                    </span>
+
+                    <strong>
+                        {{ projectTitle() }}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span>
+                        Difficulty
+                    </span>
+
+                    <strong>
+                        Advanced
+                    </strong>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span>
+                        Duration
+                    </span>
+
+                    <strong>
+                        4 Weeks
+                    </strong>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span>
+                        Status
+                    </span>
+
+                    <strong class="status">
+                        {{ progress() === 100 ? 'Completed' : 'In Progress' }}
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <!-- TECHNOLOGIES -->
+            <section class="workspace-card">
+
+                <span class="section-label">
+                    TECHNOLOGIES
+                </span>
+
+
+                <div class="tech-list">
+
+                    <span>
+                        Angular
+                    </span>
+
+                    <span>
+                        Dart
+                    </span>
+
+                    <span>
+                        Database
+                    </span>
+
+                    <span>
+                        API
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- PROGRESS -->
+            <section class="workspace-card sidebar-progress">
+
+                <span class="section-label">
+                    LEARNING PROGRESS
+                </span>
+
+                <strong>
+                    {{ progress() }}%
+                </strong>
+
+                <p>
+                    Keep completing tasks to finish
+                    your project.
+                </p>
+
+            </section>
+
+
+        </aside>
+
+
+    </div>
+
+</section>

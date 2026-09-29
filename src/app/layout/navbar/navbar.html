@@ -1,0 +1,27 @@
+<header class="navbar">
+  <a class="brand" routerLink="/">
+    <span class="brand-icon">S</span>
+    <span class="brand-name">Skill<span>Viro</span></span>
+  </a>
+
+  <nav class="nav-links">
+    <a routerLink="/" routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }">
+      Home
+    </a>
+
+    <a routerLink="/courses" routerLinkActive="active">Courses</a>
+    <a routerLink="/projects" routerLinkActive="active">Projects</a>
+    <a routerLink="/tools" routerLinkActive="active">Tools</a>
+    <a routerLink="/career" routerLinkActive="active">Career</a>
+  </nav>
+
+  <div class="nav-actions">
+    <a class="login" routerLink="/login">Login</a>
+    <a class="start-btn" routerLink="/courses">Get Started</a>
+  </div>
+
+  <button class="menu-btn" aria-label="Open menu">
+    ☰
+  </button>
+</header>
